@@ -12,7 +12,7 @@ r = redis.Redis(connection_pool=redis_pool)
 def save_ip():
     ip_addr = request.access_route[0]
     msg = {}
-    if r.set(ip_addr,'pa'):
+    if r.set(ip_addr,'pass'):
         msg = {'msg':'ok'}
     return jsonify(**msg)
 
