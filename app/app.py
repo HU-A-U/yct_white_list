@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 #建立redis连接池
 import redis
-redis_pool = redis.ConnectionPool(host='127.0.0.1',port=6379,decode_responses=True)
+redis_pool = redis.ConnectionPool(host='aliyun_redis',port=6379,decode_responses=True)
 r = redis.Redis(connection_pool=redis_pool)
 
 @app.route('/', methods=['get'])
@@ -14,7 +14,6 @@ def save_ip():
     msg = {}
     if r.set(ip_addr,'pa'):
         msg = {'msg':'ok'}
-
     return jsonify(**msg)
 
 if __name__ == '__main__':
